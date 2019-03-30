@@ -1,0 +1,8 @@
+<h1>詳細画面</h1>
+<h5><%= @tweet.text %></h5>
+<div>
+  <% if user_signed_in? %>
+    <%= link_to "編集", "/tweets/#{@tweet.id}/edit", class: "btn"%>
+    <%= link_to "削除", "/tweets/#{@tweet.id}", class: "btn", method: :delete%>
+  <% end %>
+</div>

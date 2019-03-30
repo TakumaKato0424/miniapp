@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Miniapp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="blue lighten-2">
+        <div class="nav-wrapper">
+          <%= link_to "mini app", root_path, class: "brand-logo" %>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <% if user_signed_in? %>
+              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to "新規投稿", new_tweet_path %></li>
+            <% else %>
+              <li><%= link_to "ログイン", new_user_session_path %></li>
+              <li><%= link_to "新規登録", new_user_registration_path %></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <h6><%= flash[:notice] %></h6>
+      </div>
+    <% end %>
+    <div class="contents">
+     <%= yield %>
+    </div>
+  </body>
+</html>
